@@ -1,5 +1,6 @@
 # [課題No](リンク)
-## [CodeSandBox](リンク) :最新のコミットリンク
+## [CodeSandBox](リンク)
+## Latest commit : 最新のコミットリンク
 
 ## [comment]
 - コミットリンク
