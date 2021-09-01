@@ -3,8 +3,9 @@ const listData = [
     {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
 ]
 
-for(const list of listData) {
+const frag = new DocumentFragment();
 
+for(const list of listData) {
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = list.to;
@@ -16,8 +17,8 @@ for(const list of listData) {
     a.appendChild(img);
     a.appendChild(text);
     li.appendChild(a);
-    document.getElementById('js-lists').appendChild(li);
+    frag.appendChild(li);
 }
-
+document.getElementById('js-lists').appendChild(frag);
 
 
