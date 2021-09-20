@@ -7,9 +7,9 @@ const myPromise = new Promise((resolve) => {
         resolve(listData);
     }, 3000);
 });
-myPromise.then(() => {
+myPromise.then((value) => {
     const frag = new DocumentFragment();
-    for(const list of listData) {
+    for(const list of value) {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = list.to;
