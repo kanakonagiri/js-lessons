@@ -12,7 +12,7 @@ function displayLoadingImage () {
     ul.appendChild(lodingImage);
 }
 
-async function myPromise() {
+async function loadingPromise() {
     return new Promise(resolve => {
         displayLoadingImage ();
         setTimeout(() => {
@@ -25,7 +25,7 @@ async function myPromise() {
 
 async function createLists() {
     const frag = new DocumentFragment();
-    const value = await myPromise();
+    const value = await loadingPromise();
     for(const list of value) {
         const li = document.createElement('li');
         const a = document.createElement('a');
