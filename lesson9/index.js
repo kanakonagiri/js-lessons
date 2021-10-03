@@ -17,7 +17,7 @@ function removeLoadingImage () {
     lodingImage.remove();
 }
 
-async function loadingPromise() {
+async function getListData() {
     return new Promise(resolve => {
         displayLoadingImage ();
         setTimeout(() => {
@@ -29,7 +29,7 @@ async function loadingPromise() {
 
 async function createLists() {
     const frag = new DocumentFragment();
-    const value = await loadingPromise();
+    const value = await getListData();
     for(const list of value) {
         const li = document.createElement('li');
         const a = document.createElement('a');
