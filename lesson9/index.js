@@ -5,21 +5,27 @@ const listData = [
     {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
 ]
 
-async function promise() {
+function displayLoadingImage () {
+    const lodingImage = document.createElement('img');
+    lodingImage.id = 'loadingImageId';
+    lodingImage.src = './loading-circle.gif';
+    ul.appendChild(lodingImage);
+}
+
+async function myPromise() {
     return new Promise(resolve => {
-        const lodingImage = document.createElement('img');
-        lodingImage.src = './loading-circle.gif';
-        ul.appendChild(lodingImage);
+        displayLoadingImage ();
         setTimeout(() => {
             resolve(listData);
+            const lodingImage = document.getElementById('loadingImageId');
             lodingImage.remove();
         }, 3000);
     });
 }
 
-async function asyncCall() {
+async function createLists() {
     const frag = new DocumentFragment();
-    const value = await promise();
+    const value = await myPromise();
     for(const list of value) {
         const li = document.createElement('li');
         const a = document.createElement('a');
@@ -37,4 +43,4 @@ async function asyncCall() {
     ul.appendChild(frag);
 }
 
-asyncCall();
+createLists();
