@@ -12,13 +12,17 @@ function displayLoadingImage () {
     ul.appendChild(lodingImage);
 }
 
+function removeLoadingImage () {
+    const lodingImage = document.getElementById('loadingImageId');
+    lodingImage.remove();
+}
+
 async function loadingPromise() {
     return new Promise(resolve => {
         displayLoadingImage ();
         setTimeout(() => {
             resolve(listData);
-            const lodingImage = document.getElementById('loadingImageId');
-            lodingImage.remove();
+            removeLoadingImage ();
         }, 3000);
     });
 }
