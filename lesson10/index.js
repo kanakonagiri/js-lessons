@@ -30,7 +30,7 @@ async function tryGetData() {
     try {
         return await getListData();
     } catch (error) {
-        console.error(error);
+        ul.textContent = "エラーが発生しました";
     } finally {
         removeLoadingImage ();
     }
