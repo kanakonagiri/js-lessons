@@ -6,15 +6,15 @@ const listData = [
 ]
 
 function displayLoadingImage () {
-    const lodingImage = document.createElement('img');
-    lodingImage.id = 'loadingImageId';
-    lodingImage.src = './loading-circle.gif';
-    ul.appendChild(lodingImage);
+    const loadingImage = document.createElement('img');
+    loadingImage.id = 'loadingImageId';
+    loadingImage.src = './loading-circle.gif';
+    ul.appendChild(loadingImage);
 }
 
 function removeLoadingImage () {
-    const lodingImage = document.getElementById('loadingImageId');
-    lodingImage.remove();
+    const loadingImage = document.getElementById('loadingImageId');
+    loadingImage.remove();
 }
 
 async function getListData() {
