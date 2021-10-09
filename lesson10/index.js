@@ -30,7 +30,9 @@ async function tryGetData() {
     try {
         return await getListData();
     } catch (error) {
-        ul.textContent = "エラーが発生しました";
+        const errorText = document.createElement('p');
+        ul.replaceWith(errorText);
+        errorText.textContent = "エラーが発生しました";
     } finally {
         removeLoadingImage ();
     }
