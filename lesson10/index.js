@@ -26,36 +26,45 @@ async function getListData() {
     });
 }
 
-async function tryGetData() {
+async function getData() {
     try {
         return await getListData();
     } catch (error) {
-        const errorText = document.createElement('p');
-        ul.replaceWith(errorText);
-        errorText.textContent = "エラーが発生しました";
+        errorText("エラーが発生しました");
+        return error;
     } finally {
         removeLoadingImage ();
     }
 }
 
+function errorText(text) {
+    const errorText = document.createElement('p');
+    ul.replaceWith(errorText);
+    errorText.textContent = text;
+}
+
 async function createLists() {
     const frag = new DocumentFragment();
-    const value = await tryGetData();
-    for(const list of value) {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = list.to;
-        const img = document.createElement('img');
-        img.src = list.img;
-        img.alt = list.alt;
-        const text = document.createTextNode(list.text);
-
-        a.appendChild(img);
-        a.appendChild(text);
-        li.appendChild(a);
-        frag.appendChild(li);
+    const value = await getData();
+    if (value.length) {
+        for(const list of value) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = list.to;
+            const img = document.createElement('img');
+            img.src = list.img;
+            img.alt = list.alt;
+            const text = document.createTextNode(list.text);
+    
+            a.appendChild(img);
+            a.appendChild(text);
+            li.appendChild(a);
+            frag.appendChild(li);
+        }
+        ul.appendChild(frag);
+    } else {
+        errorText("値が入ってません");
     }
-    ul.appendChild(frag);
 }
 
 createLists();
