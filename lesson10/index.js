@@ -43,7 +43,7 @@ const errorText = (text) => {
     errorText.textContent = text;
 }
 
-async function init() {
+const init = async () => {
     const value = await getData();
     if (value.length) {
         createList(value);
