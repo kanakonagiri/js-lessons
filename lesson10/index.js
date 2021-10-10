@@ -5,19 +5,19 @@ const listData = [
     {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
 ]
 
-function displayLoadingImage () {
+const displayLoadingImage = () => {
     const loadingImage = document.createElement('img');
     loadingImage.id = 'loadingImageId';
     loadingImage.src = './loading-circle.gif';
     ul.appendChild(loadingImage);
 }
 
-function removeLoadingImage () {
+const removeLoadingImage = () => {
     const loadingImage = document.getElementById('loadingImageId');
     loadingImage.remove();
 }
 
-async function getListData() {
+const getListData = async() => {
     return new Promise(resolve => {
         displayLoadingImage ();
         setTimeout(() => {
@@ -26,7 +26,7 @@ async function getListData() {
     });
 }
 
-async function getData() {
+const getData = async() => {
     try {
         return await getListData();
     } catch (error) {
