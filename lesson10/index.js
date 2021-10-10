@@ -37,34 +37,37 @@ async function getData() {
     }
 }
 
-function errorText(text) {
+const errorText = (text) => {
     const errorText = document.createElement('p');
     ul.replaceWith(errorText);
     errorText.textContent = text;
 }
 
-async function createLists() {
-    const frag = new DocumentFragment();
+async function init() {
     const value = await getData();
     if (value.length) {
-        for(const list of value) {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = list.to;
-            const img = document.createElement('img');
-            img.src = list.img;
-            img.alt = list.alt;
-            const text = document.createTextNode(list.text);
-    
-            a.appendChild(img);
-            a.appendChild(text);
-            li.appendChild(a);
-            frag.appendChild(li);
-        }
-        ul.appendChild(frag);
+        createList(value);
     } else {
         errorText("値が入ってません");
     }
 }
+init();
 
-createLists();
+const createList = (value) => {
+    const frag = new DocumentFragment();
+    for(const list of value) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = list.to;
+        const img = document.createElement('img');
+        img.src = list.img;
+        img.alt = list.alt;
+        const text = document.createTextNode(list.text);
+
+        a.appendChild(img);
+        a.appendChild(text);
+        li.appendChild(a);
+        frag.appendChild(li);
+    }
+    ul.appendChild(frag);
+}
