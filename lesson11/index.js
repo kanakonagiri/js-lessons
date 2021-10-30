@@ -1,15 +1,23 @@
 const ul = document.getElementById('js-lists');
 
 const fetchData = async() => {
-    const data = await fetch('https://jsondata.okiba.me/v1/json/KN8s0211027113740');
-    const obj = await data.json();
+    const response = await fetch('https://jsondata.okiba.me/v1/json/KN8s0211027113740');
+    const obj = await response.json();
     const listData = obj.data;
-    return listData;
+
+    displayLoadingImage ();
+
+    await new Promise(resolve => {
+        setTimeout(() => {
+            resolve(listData);
+        }, 3000);
+    });
+    createList(listData);
 }
 
 const getData = async() => {
     try {
-        return await getListData();
+        return await fetchData();
     } catch (error) {
         errorText("エラーが発生しました");
         return error;
@@ -30,32 +38,13 @@ const removeLoadingImage = () => {
     loadingImage.remove();
 }
 
-const getListData = async() => {
-    return new Promise(resolve => {
-        displayLoadingImage ();
-        setTimeout(() => {
-            resolve(fetchData());
-        }, 3000);
-    });
-}
-
 const errorText = (text) => {
     const errorText = document.createElement('p');
     ul.replaceWith(errorText);
     errorText.textContent = text;
 }
 
-const init = async () => {
-    const value = await getData();
-    if (value.length) {
-        createList(value);
-    } else {
-        errorText("値が入ってません");
-    }
-}
-
 const createList = (value) => {
-    console.log(value);
     const frag = new DocumentFragment();
     for(const list of value) {
         const li = document.createElement('li');
@@ -74,4 +63,4 @@ const createList = (value) => {
     ul.appendChild(frag);
 }
 
-init();
+getData();
