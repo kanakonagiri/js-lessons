@@ -7,6 +7,7 @@ const fetchData = async() => {
         const listData = obj.data;
         return listData;
     } catch (error) {
+        errorText(`エラーが発生しました: 詳細 ${error}`);
         return error;
     }
 }
@@ -28,13 +29,16 @@ const displayContents = async() => {
     try {
         const data = await fetchData();
         createList(data);
+        return await fetchData();
     } catch (error) {
-        errorText(`エラーが発生しました: 詳細 ${error}`);
         return error;
     } finally {
         removeLoadingImage ();
     }
 }
+displayContents().catch((error) => {
+    errorText(`エラーが発生しました: 詳細 ${error}`);
+});
 
 const errorText = (text) => {
     const errorText = document.createElement('p');
@@ -60,5 +64,3 @@ const createList = (value) => {
     }
     ul.appendChild(frag);
 }
-
-displayContents();
