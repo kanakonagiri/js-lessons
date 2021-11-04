@@ -27,7 +27,11 @@ const displayContents = async() => {
     displayLoadingImage();
     try {
         const data = await fetchData();
-        createList(data);
+        if (data) {
+            createList(data);
+        } else {
+            errorText("エラーが発生しました: 詳細 dataがありません");
+        }
     } catch (error) {
         errorText(`エラーが発生しました: 詳細 ${error}`);
     } finally {
