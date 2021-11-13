@@ -1,16 +1,5 @@
 const ul = document.getElementById('js-lists');
 
-const fetchData = async() => {
-    try {
-        const response = await fetch('https://jsondata.okiba.me/v1/json/KN8s0211027113740');
-        const obj = await response.json();
-        const listData = obj.data;
-        return listData;
-    } catch (error) {
-        errorText(`エラーが発生しました: 詳細 ${error}`);
-    }
-}
-
 const displayLoadingImage = () => {
     const loadingImage = document.createElement('img');
     loadingImage.id = 'loadingImageId';
@@ -23,22 +12,26 @@ const removeLoadingImage = () => {
     loadingImage.remove();
 }
 
-const displayContents = async() => {
+const getData = async (url) => {
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
+const init = async () => {
     displayLoadingImage();
     try {
-        const data = await fetchData();
-        if (data) {
-            createList(data);
-        } else {
-            errorText("エラーが発生しました: 詳細 dataがありません");
-        }
-    } catch (error) {
-        errorText(`エラーが発生しました: 詳細 ${error}`);
-    } finally {
-        removeLoadingImage ();
+        const { data } = await getData("https://jsondata.okiba.me/v1/json/KN8s0211027113740");
+        createList(data);
+    } catch (e) {
+        errorText(`エラーが発生しました: 詳細 ${e}`);
     }
+    removeLoadingImage();
 }
-displayContents();
+init();
 
 const errorText = (text) => {
     const errorText = document.createElement('p');
