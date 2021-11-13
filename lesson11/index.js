@@ -39,9 +39,9 @@ const errorText = (text) => {
     errorText.textContent = text;
 }
 
-const createList = (value) => {
+const createList = (lists) => {
     const frag = new DocumentFragment();
-    for(const list of value) {
+    for(const list of lists) {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = list.a;
