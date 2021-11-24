@@ -25,7 +25,7 @@ const getData = async (url) => {
 const init = async () => {
     displayLoadingImage();
     try {
-        const { data } = await getData("http://myjson.dit.upm.es/api/bins/edwr");
+        const { data } = await getData("https://myjson.dit.upm.es/api/bins/edwr");
         createList(data);
     } catch (e) {
         errorText(`エラーが発生しました: 詳細 ${e}`);
