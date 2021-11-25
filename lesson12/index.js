@@ -1,11 +1,11 @@
-const ul = document.getElementById('js-lists');
-const fetchButton = document.getElementById('fetchButton');
+const contents = document.getElementById('js-contents');
+const button = document.createElement('button');
 
 const displayLoadingImage = () => {
     const loadingImage = document.createElement('img');
     loadingImage.id = 'loadingImageId';
     loadingImage.src = './loading-circle.gif';
-    ul.appendChild(loadingImage);
+    contents.appendChild(loadingImage);
 }
 
 const removeLoadingImage = () => {
@@ -24,6 +24,7 @@ const getData = async (url) => {
 
 const init = async () => {
     displayLoadingImage();
+    removeButton();
     try {
         const { data } = await getData("https://myjson.dit.upm.es/api/bins/edwr");
         createList(data);
@@ -41,6 +42,7 @@ const errorText = (text) => {
 
 const createList = (lists) => {
     const frag = new DocumentFragment();
+    const ul = document.createElement('ul');
     for(const list of lists) {
         const li = document.createElement('li');
         const a = document.createElement('a');
@@ -53,11 +55,21 @@ const createList = (lists) => {
         a.appendChild(img);
         a.appendChild(text);
         li.appendChild(a);
+        ul.appendChild(li);
         frag.appendChild(li);
     }
     ul.appendChild(frag);
+    contents.appendChild(ul);
 }
 
-fetchButton.addEventListener('click', () => {
-    init();
-});
+displayButton = () => {
+    button.textContent = 'クリックしたら表示されます';
+    contents.appendChild(button);
+    button.addEventListener('click', init)
+}
+removeButton = () => {
+    button.remove();
+}
+displayButton();
+
+
