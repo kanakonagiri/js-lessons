@@ -36,7 +36,7 @@ const init = async () => {
 
 const errorText = (text) => {
     const errorText = document.createElement('p');
-    ul.replaceWith(errorText);
+    contents.replaceWith(errorText);
     errorText.textContent = text;
 }
 
@@ -56,18 +56,17 @@ const createList = (lists) => {
         a.appendChild(text);
         li.appendChild(a);
         ul.appendChild(li);
-        frag.appendChild(li);
+        frag.appendChild(ul);
     }
-    ul.appendChild(frag);
     contents.appendChild(ul);
 }
 
-displayButton = () => {
+const displayButton = () => {
     button.textContent = 'クリックしたら表示されます';
     contents.appendChild(button);
     button.addEventListener('click', init)
 }
-removeButton = () => {
+const removeButton = () => {
     button.remove();
 }
 displayButton();
