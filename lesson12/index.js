@@ -59,10 +59,9 @@ const createList = (lists) => {
         a.appendChild(img);
         a.appendChild(text);
         li.appendChild(a);
-        ul.appendChild(li);
-        frag.appendChild(ul);
+        frag.appendChild(li);
     }
-    contents.appendChild(ul);
+    contents.appendChild(ul).appendChild(frag);
 }
 
 const displayButton = () => {
@@ -74,5 +73,3 @@ const removeButton = () => {
     button.remove();
 }
 displayButton();
-
-
