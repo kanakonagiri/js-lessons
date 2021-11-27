@@ -27,6 +27,10 @@ const init = async () => {
     removeButton();
     try {
         const { data } = await getData("https://myjson.dit.upm.es/api/bins/edwr");
+        if (data.length === 0) {
+            errorText(`エラーが発生しました: 詳細 data is empty`);
+            return;
+        }
         createList(data);
     } catch (e) {
         errorText(`エラーが発生しました: 詳細 ${e}`);
