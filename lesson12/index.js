@@ -51,14 +51,15 @@ const createList = (lists) => {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = list.a;
+        a.textContent = list.text;
         const img = document.createElement('img');
         img.src = list.img;
         img.alt = list.alt;
-        const text = document.createTextNode(list.text);
 
-        a.appendChild(img);
-        a.appendChild(text);
-        frag.appendChild(li).appendChild(a);
+        frag
+            .appendChild(li)
+            .appendChild(a)
+            .insertAdjacentElement("afterbegin", img);
     }
     contents.appendChild(ul).appendChild(frag);
 }
