@@ -58,8 +58,7 @@ const createList = (lists) => {
 
         a.appendChild(img);
         a.appendChild(text);
-        li.appendChild(a);
-        frag.appendChild(li);
+        frag.appendChild(li).appendChild(a);
     }
     contents.appendChild(ul).appendChild(frag);
 }
