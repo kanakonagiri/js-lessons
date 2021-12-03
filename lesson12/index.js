@@ -22,7 +22,7 @@ const getData = async (url) => {
     }
 };
 
-const init = async () => {
+const showLists = async () => {
     displayLoadingImage();
     removeButton();
     try {
@@ -67,7 +67,7 @@ const createList = (lists) => {
 const displayButton = () => {
     button.textContent = 'クリックしたら表示されます';
     contents.appendChild(button);
-    button.addEventListener('click', init)
+    button.addEventListener('click', showLists)
 }
 const removeButton = () => {
     button.remove();
