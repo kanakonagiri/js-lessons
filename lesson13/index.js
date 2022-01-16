@@ -18,6 +18,20 @@ const removeModalOpenButton = () => {
     modalOpenButton.remove();
 }
 
+const createRequestButton = () => {
+    const requestButton = document.createElement('button');
+    requestButton.id = 'requestButton';
+    requestButton.textContent = 'クリックしたらリクエストが送信されます';
+    return requestButton;
+}
+
+const createCloseModalButton = () => {
+    const closeModalButton = document.createElement('button');
+    closeModalButton.id = 'closeModal';
+    closeModalButton.textContent = '閉じる';
+    return closeModalButton;
+}
+
 const showModal = () => {
     // モーダルを表示するボタンを取り除く
     removeModalOpenButton();
@@ -31,19 +45,15 @@ const showModal = () => {
     modal.appendChild(modalContent);
 
     // リクエスト送信ボタンを作成し、モーダルの中に入れる
-    const requestButton = document.createElement('button');
-    requestButton.id = 'requestButton';
-    requestButton.textContent = 'クリックしたらリクエストが送信されます';
+    const requestButton = createRequestButton();
     modalContent.appendChild(requestButton);
 
-    // 閉じるボタンを作成し、モーダルの中に入れる
-    const closeModalButton = document.createElement('button');
-    closeModalButton.id = 'closeModal';
-    closeModalButton.textContent = '閉じる';
-    modalContent.appendChild(closeModalButton);
-
-    //リクエスト送信ボタンがクリックされた時
+    //リクエスト送信ボタンがクリックされた時リストを表示する
     requestButton.addEventListener('click', showLists);
+
+    // 閉じるボタンを作成し、モーダルの中に入れる
+    const closeModalButton = createCloseModalButton();
+    modalContent.appendChild(closeModalButton);
     
     //閉じるがクリックされた時
     closeModalButton.addEventListener('click', () => {
