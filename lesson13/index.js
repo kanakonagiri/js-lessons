@@ -1,10 +1,5 @@
 const contents = document.getElementById('js-contents');
 
-window.addEventListener('DOMContentLoaded', () => {
-    // モーダルを表示させるボタンを表示する
-    showModalOpenButton();
-});
-
 const showModalOpenButton = () => {
     const openButton = document.createElement('button');
     openButton.id = 'modalOpenButton';
@@ -64,7 +59,6 @@ const showModal = () => {
 
     // モーダルコンテンツの外側をクリックしたらモーダルを閉じる
     document.addEventListener('click', (e) => {
-        console.log(e.target)
         if (e.target === modal) {
             modal.remove();
             // モーダルを表示させるボタンを表示する
@@ -140,3 +134,6 @@ const createList = (lists) => {
     }
     contents.appendChild(ul).appendChild(frag);
 }
+
+// モーダルを表示させるボタンを表示する
+showModalOpenButton();
