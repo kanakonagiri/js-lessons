@@ -1,0 +1,56 @@
+#modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+#modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    width: 50%;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+button {
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .8;
+    transition: .5s;
+}
+
+#modalOpenButton {
+    background: #394342;
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+
+#requestButton {
+    background: #394342;
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+
+#closeModal {
+    background: #A7A395;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 12px;
+}
